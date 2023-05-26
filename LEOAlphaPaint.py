@@ -202,7 +202,7 @@ def blendChannels(self,context, settings, obj, bm, color_data):
     src_ch = [i for i, x in enumerate(self.src_ch) if x]
     if not src_ch: src_ch = [0,1,2]
     isolated_channels = [int(x) for x in settings.isolated_Channel]
-    if not isolated_channels: isolated_channels = [0,1,2]
+    if not isolated_channels or 3 in isolated_channels: isolated_channels = [0,1,2]
 
     if blend_mode == 'ALPHAOVER':
         src_ch = [x for x in src_ch if x!=3]
@@ -222,8 +222,9 @@ def blendChannels(self,context, settings, obj, bm, color_data):
     if src_count == 1 or iso_count==1:
         for vertex in bm.verts:
             for loop in vertex.link_loops:
-                for c in src_ch:
-                    for x in isolated_channels:
+                for x in isolated_channels:
+                    loop[referenceColor][x] = 0
+                    for c in src_ch:
                         loop[referenceColor][x] += loop[src][c]/src_count
 
     elif set(src_ch) == set(isolated_channels):
@@ -240,7 +241,7 @@ def blendChannels(self,context, settings, obj, bm, color_data):
     elif blend_mode == 'ALPHAOVER':
         for vertex in bm.verts:
             for loop in vertex.link_loops:
-                for c in src_ch: 
+                for c in isolated_channels: 
                     a = loop[referenceColor][3]
                     loop[referenceColor][c] = loop[referenceColor][c]*a + (1-a)*loop[dst][c]
     elif blend_mode == 'PAINTMIX':
@@ -263,60 +264,60 @@ def blendChannels(self,context, settings, obj, bm, color_data):
     elif blend_mode == 'ADD':
         for vertex in bm.verts:
             for loop in vertex.link_loops:
-                for c in src_ch:
+                for c in isolated_channels:
                     loop[referenceColor][c] = clamp01(loop[dst][c]+loop[referenceColor][c])
     elif blend_mode == 'LIGHTEN':
         for vertex in bm.verts:
             for loop in vertex.link_loops:
-                for c in src_ch:
+                for c in isolated_channels:
                     loop[referenceColor][c] = max(loop[dst][c],loop[referenceColor][c])
     elif blend_mode == 'COLORDODGE':
         for vertex in bm.verts:
             for loop in vertex.link_loops:
-                for c in src_ch:
+                for c in isolated_channels:
                     loop[referenceColor][c] = 1 if 1-loop[referenceColor][c]==0 else clamp01(loop[dst][c]/(1-loop[referenceColor][c]))
     elif blend_mode == 'SCREEN':
         for vertex in bm.verts:
             for loop in vertex.link_loops:
-                for c in src_ch:
+                for c in isolated_channels:
                     loop[referenceColor][c] = clamp01(1-(1-loop[referenceColor][c])*(1-loop[dst][c]))
 
     elif blend_mode == 'DARKEN':
         for vertex in bm.verts:
             for loop in vertex.link_loops:
-                for c in src_ch:
+                for c in isolated_channels:
                     loop[referenceColor][c] = min(loop[referenceColor][c],loop[dst][c])
     elif blend_mode == 'MUL':
         for vertex in bm.verts:
             for loop in vertex.link_loops:
-                for c in src_ch:
+                for c in isolated_channels:
                     loop[referenceColor][c] *= loop[dst][c]
     elif blend_mode == 'LINEARBURN':
         for vertex in bm.verts:
             for loop in vertex.link_loops:
-                for c in src_ch:
+                for c in isolated_channels:
                     loop[referenceColor][c] = clamp01(loop[referenceColor][c]+loop[dst][c]-1)
     elif blend_mode == 'COLORBURN':
         for vertex in bm.verts:
             for loop in vertex.link_loops:
-                for c in src_ch:
+                for c in isolated_channels:
                     loop[referenceColor][c] = 0 if loop[referenceColor][c]==0 else clamp01(1-(1-loop[dst][c])/loop[referenceColor][c])
 
     elif blend_mode == 'SUB':
         for vertex in bm.verts:
             for loop in vertex.link_loops:
-                for c in src_ch:
+                for c in isolated_channels:
                     loop[referenceColor][c] = clamp01(loop[dst][c]-loop[referenceColor][c])
     elif blend_mode == 'DIV':
         for vertex in bm.verts:
             for loop in vertex.link_loops:
-                for c in src_ch:
+                for c in isolated_channels:
                     loop[referenceColor][c] = 1 if loop[referenceColor][c]==0 else clamp01(loop[dst][c]/loop[referenceColor][c])
 
     elif blend_mode == 'OVERLAY':
         for vertex in bm.verts:
             for loop in vertex.link_loops:
-                for c in src_ch:
+                for c in isolated_channels:
                     if loop[referenceColor][c] < 0.5:
                         loop[referenceColor][c] = clamp01(loop[dst][c]*2*loop[referenceColor][c])
                     else:
@@ -324,7 +325,7 @@ def blendChannels(self,context, settings, obj, bm, color_data):
     elif blend_mode == 'HARDLIGHT':
         for vertex in bm.verts:
             for loop in vertex.link_loops:
-                for c in src_ch:
+                for c in isolated_channels:
                     if loop[dst][c] < 0.5:
                         loop[referenceColor][c] = clamp01(loop[dst][c]*2*loop[referenceColor][c])
                     else:
@@ -332,7 +333,7 @@ def blendChannels(self,context, settings, obj, bm, color_data):
     elif blend_mode == 'SOFTLIGHT':
         for vertex in bm.verts:
             for loop in vertex.link_loops:
-                for c in src_ch:
+                for c in isolated_channels:
                     loop[referenceColor][c] = clamp01((1-2*loop[dst][c])*loop[referenceColor][c]**2 + 2*loop[dst][c]*loop[referenceColor][c])
 
     elif blend_mode == 'HUE':
@@ -369,13 +370,13 @@ def blendChannels(self,context, settings, obj, bm, color_data):
         factorvc = color_data[self.factor_vcol]
         for vertex in bm.verts:
             for loop in vertex.link_loops:
-                for c in src_ch:
+                for c in isolated_channels:
                     f = loop[factorvc][c]*factor_slider
                     loop[dst][c] = loop[referenceColor][c]*f + (1-f)*loop[dst][c]
     else:
         for vertex in bm.verts:
             for loop in vertex.link_loops:
-                for c in src_ch:
+                for c in isolated_channels:
                     loop[dst][c] = loop[referenceColor][c]*factor_slider + (1-factor_slider)*loop[dst][c]
 
     color_data.remove(referenceColor)
@@ -602,7 +603,6 @@ def paintChannel(self, context):
     trySetActiveVC(obj, basename)
 
     return {'FINISHED'}
-
 
 class PaintAlphaOperator(bpy.types.Operator):
     bl_idname = "paint.paint_alpha_operator"
