@@ -4,7 +4,7 @@
 Features instant button for quick game-ready vertex COLOR exports, fast vertex color isolation and paint, vertex color optimized shading, sampling and selection of vertices with specific colors, vertex-color-integrated color palette tools, and vertex color layer transfer tools. Almost every button can be assigned a shortcut via right-click.
 > Blender version 2.83 - 3.5+
 
-Foundational script by LeoMods (https://github.com/leotorrez) and Blue
+Foundational script by LeoMods (https://github.com/leotorrez) and Blue (https://github.com/SharpCyan)
 
 <a name="navigation"></a>
 ## Navigation
