@@ -29,7 +29,7 @@ Foundational script by LeoMods (https://github.com/leotorrez) and Blue
 
 <a name="instant"></a>
 ## Instant COLOR for game-ready exports
-Select an object, go into vertex mode, open the right side panel using the + button or press N on a keyboard, click on the Vertex Paint tab, and finally click "Quick Optimize COLOR" and OK to be instantly finished!
+Select an object, go into vertex paint mode, open the right side panel using the + button or press N on a keyboard, click on the Vertex Paint tab, and finally click "Quick Optimize COLOR" and OK to be instantly finished!
 <p align="middle">
   <img src="https://github.com/HummyR/LEOAlphaPaint/blob/8ab0fd1ddd77a115ff45def01679610f49aa13bf/img/Screenshot%202023-05-26%20001849.png" width="480">
 </p>
