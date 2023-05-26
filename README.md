@@ -52,15 +52,15 @@ Standard values:
 ## Isolation and paint
 Special paint fill button that does not cause the alpha layer to turn white! You can right click the button to assign a shortcut instead of using the old fill shortcut. It works with selection masking and isolated channels. Be sure to disable "affect alpha" before painting so that the built-in blender painting tool dont create streaks of white in the alpha channel.
 <p align="middle">
-  <img src="https://github.com/HummyR/LEOAlphaPaint/blob/8ab0fd1ddd77a115ff45def01679610f49aa13bf/img/Screenshot%202023-05-25%20234155.png" width="400">
-  <img src="https://github.com/HummyR/LEOAlphaPaint/blob/8ab0fd1ddd77a115ff45def01679610f49aa13bf/img/Screenshot%202023-05-25%20234218.png" width="450">
+  <img src="https://github.com/HummyR/LEOAlphaPaint/blob/8ab0fd1ddd77a115ff45def01679610f49aa13bf/img/Screenshot%202023-05-25%20234155.png" width="350">
+  <img src="https://github.com/HummyR/LEOAlphaPaint/blob/8ab0fd1ddd77a115ff45def01679610f49aa13bf/img/Screenshot%202023-05-25%20234218.png" width="400">
 </p>
 
 Special thanks to [andyp123](https://github.com/andyp123/blender_vertex_color_master), Bartosz Styperek, and RylauChelmi for the gradient tool. Really useful for drawing smooth linear/circular gradients. You might use this if you are creating tapering outlines that get thinner from edge to tip.
 <p align="middle">
   <img src="https://github.com/HummyR/LEOAlphaPaint/blob/8ab0fd1ddd77a115ff45def01679610f49aa13bf/img/Screenshot%202023-05-25%20234815.png" width="480">
 </p>
-Hover over an isolation channel button to see what that specific channel does to the in-game model.
+Hover over an isolation channel button to see what that specific channel does to the in-game model. Channel isolation workflow has been optimized to make it more comfortable to work with vertex colors!
 <p align="middle">
   <img src="https://github.com/HummyR/LEOAlphaPaint/blob/8ab0fd1ddd77a115ff45def01679610f49aa13bf/img/Screenshot%202023-05-25%20234557.png" width="480">
 </p>
