@@ -1,5 +1,5 @@
 # LEO Alpha Paint
-[Blender](https://www.blender.org/) add-on for optimally working with vertex colors on game models at AGMG: https://discord.gg/agmg
+[Blender](https://www.blender.org/) add-on for optimally working with vertex colors on game models at AGMG: https://discord.gg/agmg and https://gamebanana.com/
 
 Features instant button for quick game-ready vertex COLOR exports, fast vertex color isolation and paint, vertex color optimized shading, sampling and selection of vertices with specific colors, vertex-color-integrated color palette tools, and vertex color layer transfer tools. Almost every button can be assigned a shortcut via right-click.
 > Blender version 2.83 - 3.5+
