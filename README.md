@@ -3,6 +3,7 @@
 
 Features instant button for quick game-ready vertex COLOR exports, fast vertex color isolation and paint, vertex color optimized shading, sampling and selection of vertices with specific colors, vertex-color-integrated color palette tools, and vertex color layer transfer tools. Almost every button can be assigned a shortcut via right-click.
 > Blender version 2.83 - 3.5+
+Foundational script by LeoMods (https://github.com/leotorrez) and Blue
 
 <a name="navigation"></a>
 ## Navigation
@@ -96,3 +97,8 @@ If you ever need to work with multiple color layers, which I doubt you will but 
   <img src="https://github.com/HummyR/LEOAlphaPaint/blob/8ab0fd1ddd77a115ff45def01679610f49aa13bf/img/Screenshot%202023-05-25%20234651.png" width="480">
 </p>
 The add-on currently only supports mono to multi, multi to mono, mono to mono, and same multi to multi channel transfers. It does not support different multi channel to multi channel transfers (like RG to GBA).
+
+## Credits
+Edits by HummyR (https://github.com/HummyR) (f2p tool developer at https://discord.gg/agmg)
+
+Credits to Gradient tool by andyp123 (https://github.com/andyp123/blender_vertex_color_master), Bartosz Styperek, and RylauChelmi, adapted and updated for alpha paint
