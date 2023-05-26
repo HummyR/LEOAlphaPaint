@@ -198,11 +198,17 @@ def blendChannels(self,context, settings, obj, bm, color_data):
     blend_mode = self.blend_mode
     factor = self.factor_vcol
     factor_slider = self.factor_slider
+    dstname = self.dst_vcol
+    dst = color_data[dstname]
+    src = color_data[self.src_vcol]
 
     src_ch = [i for i, x in enumerate(self.src_ch) if x]
     if not src_ch: src_ch = [0,1,2]
-    isolated_channels = [int(x) for x in settings.isolated_Channel]
-    if not isolated_channels or 3 in isolated_channels: isolated_channels = [0,1,2]
+
+    settings.isolated_Channel = dstname.split(keyName)[1] if keyName in dstname else ""
+    isolated_channels = [int(x) for x in settings.isolated_Channel if x]
+    alpha_mode = bool(3 in isolated_channels)
+    if not isolated_channels or alpha_mode: isolated_channels = [0,1,2]
 
     if blend_mode == 'ALPHAOVER':
         src_ch = [x for x in src_ch if x!=3]
@@ -211,15 +217,11 @@ def blendChannels(self,context, settings, obj, bm, color_data):
     src_count = len(src_ch)
     iso_count = len(isolated_channels)
 
-    dstname = self.dst_vcol
-    dst = color_data[dstname]
-    src = color_data[self.src_vcol]
-    
     referenceColor = color_data.new()
     referenceColor.copy_from(src)
     # MIX [1,2] COLORD COLORS COLORF 1.0 
 
-    if src_count == 1 or iso_count==1:
+    if src_count == 1 or iso_count==1 or alpha_mode:
         for vertex in bm.verts:
             for loop in vertex.link_loops:
                 for x in isolated_channels:
