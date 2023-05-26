@@ -1,4 +1,4 @@
-# Foundational script by LeoMods (https://github.com/leotorrez) and Blue
+# Foundational script by LeoMods (https://github.com/leotorrez) and Blue (https://github.com/SharpCyan)
 # Edits by HummyR (https://github.com/HummyR) (tool developer at https://discord.gg/agmg)
 # Credits to Gradient tool by andyp123 (https://github.com/andyp123/blender_vertex_color_master), Bartosz Styperek, and RylauChelmi, adapted and updated for alpha paint
 
